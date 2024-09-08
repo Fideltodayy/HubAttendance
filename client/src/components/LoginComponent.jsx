@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
@@ -11,17 +12,11 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const LoginComponent = ({ onLoginSuccess }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const navigate = useNavigate();
   const handleLogin = () => {
-    setIsModalOpen(true);
-
-    // Simulate login process and redirect after 3 seconds
-    setTimeout(() => {
-      setIsModalOpen(false);
-      onLoginSuccess();
-    }, 3000);
+    navigate("/VerificationPage/SignIn");
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -49,9 +44,7 @@ const LoginComponent = ({ onLoginSuccess }) => {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogAction onClick={() => setIsModalOpen(false)}>
-              Cancel
-            </AlertDialogAction>
+            <AlertDialogAction onClick={handleLogin}>Cancel</AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
